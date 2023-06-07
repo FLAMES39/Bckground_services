@@ -4,18 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:build":"tsc -w",
-    "start:run":"nodemon dist/index.js",
-    "start":"concurrently npm:start:*"
+    "start:build": "tsc -w",
+    "start:run": "nodemon dist/index.js",
+    "start": "concurrently npm:start:*"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/dotenv": "^8.2.0",
+    "@types/ejs": "^3.1.2",
+    "@types/mssql": "^8.1.2",
     "@types/nodemailer": "^6.4.8",
     "concurrently": "^8.1.0",
     "dotenv": "^16.1.4",
+    "ejs": "^3.1.9",
+    "mssql": "^9.1.1",
     "nodemailer": "^6.9.3"
   }
 }

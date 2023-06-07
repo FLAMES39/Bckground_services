@@ -13,6 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const nodemailer_1 = __importDefault(require("nodemailer"));
+const mssql_1 = __importDefault(require("mssql"));
+const ejs_1 = __importDefault(require("ejs"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
 dotenv_1.default.config({ path: path_1.default.resolve(__dirname, '../.env') });
@@ -26,22 +28,66 @@ let ConfigOptions = {
         pass: process.env.PASSWORD
     }
 };
-//create message
-let messageOptions = {
-    from: 'mashadachris85@gmail.com',
-    to: "mashadachris85@gmail.com",
-    subject: "Hello ✔",
-    text: "Hello world?",
-    html: "<b>Hello world?</b>",
-};
-//send the message
-function sendMail(mailopts) {
-    return __awaiter(this, void 0, void 0, function* () {
+const fetchUserFromDatabase = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        //first configure sql connection
+        const config = {
+            user: process.env.DB_USER,
+            password: process.env.DB_PWD,
+            server: process.env.DB_SERVER,
+            database: process.env.DB_NAME
+        };
+        //connect to the database
+        yield mssql_1.default.connect(config);
+        //Stored procedure or query to fetch the user data
+        const query = 'SELECT name, email FROM Users WHERE IsDelete=0';
+        //execute the query and get the result
+        const userInfo = yield mssql_1.default.query(query);
+        //close the mssql connection
+        yield sql.close();
+        //return the fetched user data
+        return userInfo.recordset;
+    }
+    catch (error) {
+        console.log(error);
+        throw error;
+    }
+});
+ejs_1.default.renderFile('Template/email.ejs', { name: "Christian", message: "Don't miss out on the latest updates and offers. Click the button below to stay connected:" }, (err, html) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const users = yield fetchUserFromDatabase();
+        for (let user of users) {
+            const { name, email } = user;
+        }
+        console.log(html);
+        let messageOptions = {
+            from: 'mashadachris85@gmail.com',
+            to: email,
+            subject: "Hello ✔",
+            html,
+            attachments: [
+                {
+                    // filename: 'text1.txt',
+                    // content: 'hello world!'
+                    path: __dirname + '/email.pdf'
+                }
+            ]
+        };
         //create transporter
         let transporter = nodemailer_1.default.createTransport(ConfigOptions);
-        //transport email
-        yield transporter.sendMail(mailopts);
-    });
-}
-sendMail(messageOptions);
+        //transport or send email
+        yield transporter.sendMail(messageOptions);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}));
+//send the message
+// async function sendMail(mailopts:any){
+//     //create transporter
+//     let transporter=nodemailer.createTransport(ConfigOptions);
+//     //transport email
+//     await transporter.sendMail(mailopts)
+// }
+// sendMail(messageOptions)
 console.log("running...");

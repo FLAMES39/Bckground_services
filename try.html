@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>Email Template</title>
+  <style>
+    /* Base styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      color: #333333;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border: 1px solid #dddddd;
+      text-align: center;
+    }
+    h1 {
+      color: #333333;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    .picture {
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    .picture img {
+      width: 200px;
+      border-radius: 50%;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+    .message {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #42b983;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .cta-button:hover {
+      background-color: #338a68;
+    }
+
+    /* Media queries */
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+      .picture img {
+        width: 150px;
+      }
+      .message {
+        font-size: 16px;
+      }
+      .cta-button {
+        padding: 8px 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 5px;
+      }
+      .picture img {
+        width: 120px;
+      }
+      .message {
+        font-size: 14px;
+      }
+      .cta-button {
+        padding: 6px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to Nodemailer</h1>
+    <div class="picture">
+      <img src="/images/mail.jpg" alt="Profile Picture">
+    </div>
+    <p class="message">
+      Hello <strong><%=name%></strong>,
+    </p>
+    <p class="message">
+      Thank you for joining us! We're excited to have you as part of our community.
+    </p>
+    <p class="message">
+      <%=message%>
+    </p>
+    <p>
+      <a class="cta-button" href="https://example.com">Stay Connected</a>
+    </p>
+    <p class="message">
+      Regards,
+      <br>
+      Your Team
+    </p>
+  </div>
+</body>
+</html>

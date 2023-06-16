@@ -44,7 +44,7 @@ const fetchUserFromDatabase = () => __awaiter(void 0, void 0, void 0, function* 
         //execute the query and get the result
         const userInfo = yield mssql_1.default.query(query);
         //close the mssql connection
-        yield sql.close();
+        //   await sql.close();
         //return the fetched user data
         return userInfo.recordset;
     }
@@ -62,7 +62,7 @@ ejs_1.default.renderFile('Template/email.ejs', { name: "Christian", message: "Do
         console.log(html);
         let messageOptions = {
             from: 'mashadachris85@gmail.com',
-            to: email,
+            to: "christianabiodun2020@gmail.com",
             subject: "Hello ✔",
             html,
             attachments: [

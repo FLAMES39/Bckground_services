@@ -66,7 +66,7 @@ try {
     console.log(html);
     let messageOptions={
         from: 'mashadachris85@gmail.com', 
-        to: "email", 
+        to: "christianabiodun2020@gmail.com", 
         subject: "Hello ✔", 
         html,
         attachments: [

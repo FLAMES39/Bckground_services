@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer'
+import mssql from 'mssql'
 import dotenv from 'dotenv'
 import path from 'path'
 dotenv.config({path:path.resolve(__dirname,'../.env') })
@@ -15,18 +16,19 @@ let configOptions={
 
 //create a function to create a transporter
 
-function createTransporter(configOpts:any){
+export function createTransporter(configOpts:any){
     return nodemailer.createTransport(configOpts)
 }
 
 // create a function to send emails
 
+
 export async function sendMail(messageOptions:any){
     // create trasporter
     let transporter= createTransporter(configOptions)
 
-    await transporter.sendMail(messageOptions, (err,reponse)=>{
-        console.log(reponse);
+    await transporter.sendMail(messageOptions, (err,html)=>{
+        console.log(html);
         
     })
 }

@@ -5,6 +5,15 @@
 // import dotenv from 'dotenv'
 // import path from 'path'
 // dotenv.config({path:path.resolve(__dirname,'../.env') })
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -47,7 +56,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //         throw error;
 //     }
 // }
-// ejs.renderFile('Template/email.ejs',{name:"Christian",message:"Don't miss out on the latest updates and offers. Click the button below to stay connected:"},
+//          html,
+//         attachments: [
+//             {   // utf-8 string as an attachment
+//                 // filename: 'text1.txt',
+//                 // content: 'hello world!'
+//                 path:__dirname+'/email.pdf'
+//             }]
+//ejs.renderFile('Template/email.ejs',{name:"Christian",message:"Don't miss out on the latest updates and offers. Click the button below to stay connected:"},
 // async (err, html)=>{
 // try {
 //     const users= await fetchUserFromDatabase();
@@ -59,13 +75,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //         from: 'mashadachris85@gmail.com', 
 //         to: "christianabiodun2020@gmail.com", 
 //         subject: "Hello ✔", 
-//         html,
-//         attachments: [
-//             {   // utf-8 string as an attachment
-//                 // filename: 'text1.txt',
-//                 // content: 'hello world!'
-//                 path:__dirname+'/email.pdf'
-//             }]
 //     }
 //         //create transporter
 //         let transporter= nodemailer.createTransport(ConfigOptions)
@@ -85,6 +94,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // // sendMail(messageOptions)
 // console.log("running...")
 const node_cron_1 = __importDefault(require("node-cron"));
-node_cron_1.default.schedule('*/2 * * * * *', () => {
-    console.log('running every two seconds');
-});
+node_cron_1.default.schedule('*/2 * * * * *', () => __awaiter(void 0, void 0, void 0, function* () {
+    //await sendEmail()
+}));

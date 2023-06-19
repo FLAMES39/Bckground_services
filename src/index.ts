@@ -52,7 +52,14 @@
 
 
 
-// ejs.renderFile('Template/email.ejs',{name:"Christian",message:"Don't miss out on the latest updates and offers. Click the button below to stay connected:"},
+//          html,
+//         attachments: [
+//             {   // utf-8 string as an attachment
+//                 // filename: 'text1.txt',
+//                 // content: 'hello world!'
+//                 path:__dirname+'/email.pdf'
+//             }]
+//ejs.renderFile('Template/email.ejs',{name:"Christian",message:"Don't miss out on the latest updates and offers. Click the button below to stay connected:"},
 // async (err, html)=>{
 // try {
 
@@ -68,13 +75,6 @@
 //         from: 'mashadachris85@gmail.com', 
 //         to: "christianabiodun2020@gmail.com", 
 //         subject: "Hello ✔", 
-//         html,
-//         attachments: [
-//             {   // utf-8 string as an attachment
-//                 // filename: 'text1.txt',
-//                 // content: 'hello world!'
-//                 path:__dirname+'/email.pdf'
-//             }]
 //     }
    
 //         //create transporter
@@ -112,7 +112,8 @@
 // console.log("running...")
 
 import cron from 'node-cron'
+import { sendEmail } from './EmailServices/Email';
 
-cron.schedule('*/2 * * * * *', () => {
-    console.log('running every two seconds');
+cron.schedule('*/2 * * * * *', async () => {
+  //await sendEmail()
   });

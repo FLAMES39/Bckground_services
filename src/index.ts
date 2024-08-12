@@ -112,8 +112,8 @@
 // console.log("running...")
 
 import cron from 'node-cron'
-import { sendEmail } from './EmailServices/Email';
+import { SendMail } from './EmailServices/Email';
 
 cron.schedule('*/2 * * * * *', async () => {
-  //await sendEmail()
+ await SendMail()
   });

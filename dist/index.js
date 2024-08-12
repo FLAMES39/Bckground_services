@@ -94,6 +94,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // // sendMail(messageOptions)
 // console.log("running...")
 const node_cron_1 = __importDefault(require("node-cron"));
+const Email_1 = require("./EmailServices/Email");
 node_cron_1.default.schedule('*/2 * * * * *', () => __awaiter(void 0, void 0, void 0, function* () {
-    //await sendEmail()
+    yield (0, Email_1.SendMail)();
 }));
